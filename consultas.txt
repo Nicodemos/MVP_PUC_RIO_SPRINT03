@@ -1,0 +1,170 @@
+
+
+-- Qual o transporte mais envolvido em acidentes?
+
+
+SELECT
+  (SELECT sum(automovel)
+   FROM "db-sinistro-processado"."tb_dados_processados") AS Carro,
+
+  (SELECT sum(motocicleta)
+   FROM "db-sinistro-processado"."tb_dados_processados") AS Motocicleta,
+
+  (SELECT sum(bicicleta)
+   FROM "db-sinistro-processado"."tb_dados_processados") AS Bicicleta,
+
+  (SELECT sum(microonibus)
+   FROM "db-sinistro-processado"."tb_dados_processados") AS Microonibus,
+
+  (SELECT sum(onibus)
+   FROM "db-sinistro-processado"."tb_dados_processados") AS Onibus,
+
+  (SELECT sum(caminhao)
+   FROM "db-sinistro-processado"."tb_dados_processados") AS Caminhao,
+
+  (SELECT sum(ciclomotor)
+   FROM "db-sinistro-processado"."tb_dados_processados") AS Ciclomotor,
+
+  (SELECT sum(tracaoanimal)
+   FROM "db-sinistro-processado"."tb_dados_processados") AS Tracaoanimal,
+
+  (SELECT sum(trem)
+   FROM "db-sinistro-processado"."tb_dados_processados") AS Trem
+FROM "db-sinistro-processado"."tb_dados_processados" DESC
+LIMIT 1
+
+--------------------------------------------------------------------------------
+
+
+-- Dos transportes envolvidos em acidentes, quais houve mais mortes?
+
+
+SELECT
+  (SELECT sum(mortos)
+   FROM "db-sinistro-processado"."tb_dados_processados" where automovel > 0) AS Carro,
+
+  (SELECT  sum(mortos)
+   FROM "db-sinistro-processado"."tb_dados_processados" where motocicleta > 0) AS Motocicleta,
+
+  (SELECT  sum(mortos)
+   FROM "db-sinistro-processado"."tb_dados_processados" where bicicleta > 0 ) AS Bicicleta,
+
+  (SELECT  sum(mortos)
+   FROM "db-sinistro-processado"."tb_dados_processados" where microonibus > 0) AS Microonibus,
+
+  (SELECT  sum(mortos)
+   FROM "db-sinistro-processado"."tb_dados_processados" where onibus > 0) AS Onibus,
+
+  (SELECT sum(mortos)
+   FROM "db-sinistro-processado"."tb_dados_processados" where caminhao > 0) AS Caminhao,
+
+  (SELECT sum(mortos)
+   FROM "db-sinistro-processado"."tb_dados_processados" where ciclomotor > 0) AS Ciclomotor,
+
+  (SELECT  sum(mortos)
+   FROM "db-sinistro-processado"."tb_dados_processados" where tracaoanimal > 0) AS Tracaoanimal,
+
+  (SELECT  sum(mortos)
+   FROM "db-sinistro-processado"."tb_dados_processados" where trem > 0) AS Trem
+FROM "db-sinistro-processado"."tb_dados_processados" DESC
+LIMIT 1
+
+-------------------------------------------------------------------------------------
+
+-- Dos transportes envolvidos em acidentes, quais houve mais pessoas ilesas?
+
+
+SELECT
+  (SELECT sum(ilesos)
+   FROM "db-sinistro-processado"."tb_dados_processados" where automovel > 0) AS Carro,
+
+  (SELECT  sum(ilesos)
+   FROM "db-sinistro-processado"."tb_dados_processados" where motocicleta > 0) AS Motocicleta,
+
+  (SELECT  sum(ilesos)
+   FROM "db-sinistro-processado"."tb_dados_processados" where bicicleta > 0 ) AS Bicicleta,
+
+  (SELECT  sum(ilesos)
+   FROM "db-sinistro-processado"."tb_dados_processados" where microonibus > 0) AS Microonibus,
+
+  (SELECT  sum(ilesos)
+   FROM "db-sinistro-processado"."tb_dados_processados" where onibus > 0) AS Onibus,
+
+  (SELECT sum(ilesos)
+   FROM "db-sinistro-processado"."tb_dados_processados" where caminhao > 0) AS Caminhao,
+
+  (SELECT sum(ilesos)
+   FROM "db-sinistro-processado"."tb_dados_processados" where ciclomotor > 0) AS Ciclomotor,
+
+  (SELECT sum(ilesos)
+   FROM "db-sinistro-processado"."tb_dados_processados" where tracaoanimal > 0  ) AS Tracaoanimal,
+
+  (SELECT sum(ilesos)
+   FROM "db-sinistro-processado"."tb_dados_processados" where trem > 0) AS Trem
+FROM "db-sinistro-processado"."tb_dados_processados" 
+LIMIT 1
+
+----------------------------------------------------------------------------------------------
+
+
+-- Quais os 10 endereços responsáveis pela maior ocorrência de sinistros de trânsito?
+
+
+SELECT log1, count(log1) as "Qtd de ocorrencia de acidente"
+       FROM "db-sinistro-processado"."tb_dados_processados" group by log1 order by "Qtd de ocorrencia de acidente" desc limit 10
+
+
+----------------------------------------------------------------------------------------------
+
+-- Qual mês do ano teve mais acidentes? Qual dia do mês? Qual o horário do dia?
+
+SELECT mes, count(mes) as "Qtd de ocorrencia no mês"
+       FROM "db-sinistro-processado"."tb_dados_processados" group by mes order by "Qtd de ocorrencia no mês" desc 
+	   
+	   
+SELECT dia, count(dia) as "Qtd de ocorrencia no dia do mês"
+       FROM "db-sinistro-processado"."tb_dados_processados" where mes = 7 group by dia order by "Qtd de ocorrencia no dia do mês" desc limit 1
+
+SELECT hora, count(hora) as "Qtd de ocorrencia por hora do dia"
+       FROM "db-sinistro-processado"."tb_dados_processados" where mes = 7 and dia = 2 group by hora order by "Qtd de ocorrencia por hora do dia" desc limit 1
+
+
+----------------------------------------------------------------------------------------------
+
+-- Qual mês do ano teve mais mortes? Qual dia do mês?
+
+
+SELECT mes, sum(mortos) as "Qtd de mortes no mês"
+       FROM "db-sinistro-processado"."tb_dados_processados" group by mes order by "Qtd de mortes no mês" desc;
+
+
+SELECT dia, sum(mortos) as "Qtd de mortes no dia do mês"
+       FROM "db-sinistro-processado"."tb_dados_processados" where mes = 6 group by dia order by "Qtd de mortes no dia do mês" desc limit 10;
+
+---------------------------------------------------------------------------------------------
+
+ -- Dos acidentes ocorridos, quais os 10 tipos mais frequentes?
+
+SELECT natureza as Tipo,count(natureza) as "Qtd de acidentes por tipo"
+       FROM "db-sinistro-processado"."tb_dados_processados" group by natureza order by "Qtd de acidentes por tipo" desc limit 10;
+ ---------------------------------------------------------------------------------------------
+  
+  -- Dos acidentes ocorridos, quais os 10 tipos mais frequentes por endereço?
+ 
+ SELECT natureza as Tipo,log1 as "Endereço", count(natureza) as "Qtd de acidentes por tipo e endereço"
+       FROM "db-sinistro-processado"."tb_dados_processados" group by natureza,log1 order by "Qtd de acidentes por tipo e endereço" desc limit 10;
+
+
+----------------------------------------------------------------------------------------------
+
+  -- Qual a relação de mortes por acidentes? Ou seja, a cada quantos acidentes temos pelo menos uma morte?
+
+
+SELECT (((temp2.total_mortos*1.0) / tab_temp.total) * 100) as "Proporção de mortes por acidente"
+FROM
+  (SELECT count(*) AS total
+   FROM "db-sinistro-processado"."tb_dados_processados") AS tab_temp,
+
+  (SELECT count(mortos) AS total_mortos
+   FROM "db-sinistro-processado"."tb_dados_processados"
+   WHERE mortos > 0) AS temp2
