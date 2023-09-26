@@ -36,6 +36,7 @@ DataSets do bucket **repo-sprint03**
 ![](figuras/dentro_bucket.PNG)
 
 Temos então três pastas, uma para armazenar as consultas feitas no Athena **( a )** , uma para armazenar os dados brutos **( b )** , e outra para armazenar os dados processados **( c )** .
+
 a)
 
 ![](figuras/consultas_salvas.PNG)
@@ -73,9 +74,9 @@ Bases de dados AWS Glue
   **-----------------------------------------------------------------------------------------------------------------**
 ![](figuras/etl_02.PNG)
   **-----------------------------------------------------------------------------------------------------------------**
-![](figuras/etl_03.PNG)
-  **-----------------------------------------------------------------------------------------------------------------**
 ![](figuras/etl_04.PNG)
+  **-----------------------------------------------------------------------------------------------------------------**
+![](figuras/etl_03.PNG) 
 
 ## Análise das informações via AWS Athena
 
@@ -83,12 +84,15 @@ Qual o transporte mais envolvido em acidentes?
 
 ![](figuras/resposta_01.PNG)
   **-----------------------------------------------------------------------------------------------------------------**
+  
 Dos transportes envolvidos em acidentes, quais houve mais mortes?
 
 ![](figuras/resposta_02.PNG)
 
 Antes da consulta, já tinha julgado que esse seria o resultado, pelo menos para a motocicleta e carro. Em relação a motocicleta, se deve ao fato de não ser um transporte seguro por natureza, além de outros fatores que acometem as demais categorias como imprudência e falta de sinalização.
+  
   **-----------------------------------------------------------------------------------------------------------------**
+  
 Dos transportes envolvidos em acidentes, quais houve mais pessoas ilesas?
 
 ![](figuras/resposta_03.PNG)
@@ -96,38 +100,47 @@ Dos transportes envolvidos em acidentes, quais houve mais pessoas ilesas?
 Aqui vale uma explicação: transporte de tração animal e trem não teve pessoas ilesas porque estão dentro da categoria de feridos. Outra observação: é claro que o carro tem muitos aparatos de segurança como airbag e etc, no entanto, não é só por isso que tem mais ocorrências de pessoas ilesas, outro fator é que é muito utilizado e é um dos que têm mais ocorrências de sinistros, e obviamente vai ter um número maior de ilesos. 
 
   **-----------------------------------------------------------------------------------------------------------------**
+  
 Quais os 10 endereços responsáveis pela maior ocorrência de sinistros de trânsito?
 
 ![](figuras/resposta_04.PNG)
   **-----------------------------------------------------------------------------------------------------------------**
+  
 Qual mês do ano teve mais acidentes?
 
 ![](figuras/resposta_05.PNG)
   **-----------------------------------------------------------------------------------------------------------------**
+  
  Qual dia do mês?
  
 ![](figuras/resposta_05_b.PNG)
   **-----------------------------------------------------------------------------------------------------------------**
+  
 Qual o horário do dia?
 
 ![](figuras/resposta_05_c.PNG)
   **-----------------------------------------------------------------------------------------------------------------**
+  
 Qual mês do ano teve mais mortes?
 
 ![](figuras/resposta_06.PNG)
   **-----------------------------------------------------------------------------------------------------------------**
+  
  Qual dia do mês?
  
 ![](figuras/resposta_06_b.PNG)
   **-----------------------------------------------------------------------------------------------------------------**
+  
 Dos acidentes ocorridos, quais os 10 tipos mais frequentes?
 
 ![](figuras/resposta_07.PNG)
   **-----------------------------------------------------------------------------------------------------------------**
+  
 Dos acidentes ocorridos, quais os 10 tipos mais frequentes por endereço?
 
 ![](figuras/resposta_08.PNG)
   **-----------------------------------------------------------------------------------------------------------------**
+  
 Qual a relação de mortes por acidentes? Ou seja, a cada quantos acidentes temos pelo menos uma morte?
 
 ![](figuras/resposta_09.PNG)
